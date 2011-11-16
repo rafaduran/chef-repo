@@ -1,40 +1,21 @@
 Vagrant::Config.run do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
+    config.vm.define :couchdb do |couch_config|
+      couch_config.vm.box = "oneiric"
+      couch_config.vm.host_name = "couchdb.rdc.com"
+      couch_config.vm.network('33.33.33.10',    :adapter => 1)
+      couch_config.vm.network('192.168.100.10', :adapter => 2)
+      couch_config.vm.forward_port "nginx", 80, 80
+      couch_config.vm.customize do |vm|
+          vm.memory_size = 256
+      end
 
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "oneiric64"
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  # config.vm.box_url = "http://domain.com/path/to/above.box"
-
-  # Assign this VM to a host only network IP, allowing you to access it
-  # via the IP.
-  config.vm.network "33.33.33.10"
-
-  # Forward a port from the guest to the host, which allows for outside
-  # computers to access the VM, whereas host only networking does not.
-  config.vm.forward_port "http", 80, 8080
-
-  # Share an additional folder to the guest VM. The first argument is
-  # an identifier, the second is the path on the guest to mount the
-  # folder, and the third is the path on the host to the actual folder.
-  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
-
-  # Enable provisioning with chef solo, specifying a cookbooks path (relative
-  # to this Vagrantfile), and adding some recipes and/or roles.
-  #
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
-    chef.add_recipe "nginx"
-    chef.add_recipe "couchdb"
-    chef.add_recipe "openssl"
-    chef.add_recipe "mysql::server"
-  
-    # You may also specify custom JSON attributes:
-    chef.json = { :mysql => { :server_root_password => "prueba" }}
-   end
-
+        couch_config.vm.provision :chef_solo do |chef|
+            chef.cookbooks_path = "cookbooks"
+            chef.add_recipe "nginx"
+            chef.add_recipe "couchdb"
+            # You may also specify custom JSON attributes:
+            # chef.json = { :mysql => { :server_root_password => "prueba" }}
+            chef.json = { :nginx => { :worker_processes => 2 }}
+        end
+     end
 end
