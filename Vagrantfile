@@ -11,14 +11,13 @@ Vagrant::Config.run do |config|
 
         couch_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
-            chef.add_recipe "nginx"
+            chef.add_recipe "nginx::couchdb-proxy"
             chef.add_recipe "couchdb"
             # You may also specify custom JSON attributes:
             # chef.json = { :mysql => { :server_root_password => "prueba" }}
             chef.json = { 
                 :nginx => { 
-                    :worker_processes => 2,
-                    :template => "couchdb-proxy/default-site.erb"
+                    :worker_processes => 2
                 }
             }
         end
