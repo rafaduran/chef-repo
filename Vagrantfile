@@ -19,8 +19,8 @@ Vagrant::Config.run do |config|
                     :worker_processes => 2
                 },
                 :couchdb => {
-                    :require_valid_user => true,
-                    :root_password => "pass"
+                    :admin_name => "admin",
+                    :admin_password => "pass"
                 }
             }
         end
