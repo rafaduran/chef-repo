@@ -16,7 +16,7 @@ Vagrant::Config.run do |config|
       # You may also specify custom JSON attributes:
       chef.json = { 
         :couchdb => {
-          :admin_name => "admin",
+          :admin_name     => "admin",
           :admin_password => "pass"
         }
       }
@@ -47,5 +47,22 @@ Vagrant::Config.run do |config|
         }
       }
     end
-  end  
+  end
+
+  config.vm.define :web1 do |web_config|
+    web_config.vm.box = "oneiric"
+    web_config.vm.host_name = "web1.example.com"
+    web_config.vm.network('33.33.33.30',    :adapter => 1)
+    web_config.vm.network('192.168.100.30', :adapter => 2)
+    web_config.vm.customize do |vm|
+      vm.memory_size = 512
+    end
+
+    web_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "crawler"
+      # You may also specify custom JSON attributes:
+      chef.json = {}
+    end
+  end
 end
