@@ -18,4 +18,7 @@
 # limitations under the License.
 #
 
+# When just use a specific template for a CouchDB proxy
+node[:nginx][:template] = "couchdb-proxy/default-site.erb"
+
 include_recipe "nginx"
