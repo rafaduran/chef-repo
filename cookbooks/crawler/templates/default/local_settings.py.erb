@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: tabstop=4 shiftwidth=4 softtabstop=4
+# This file is under SCM conrtol
+# Do no edit in place
+
+import os
+import rdc_crawler.crawler.celery.queues as queues
+
+
+# Crawler configuration
+# CouchDb host
+SERVER = 'http://<%= node[:crawler][:couch_host] %><%- if node[:crawler][:couch_port].length > 0 %>:<%= node[:crawler][:couch_port] %><% end -%>/<%= node[:crawler][:couch_vhost] %>'
+# Crawler user-agent
+USER_AGENT = '<%= node[:crawler][:user_agent] %>'
+# CouchDB user
+COUCH_USER = '<%= node[:crawler][:couch_user] %>'
+# CouchDB user password
+COUCH_PASS = '<%= node[:crawler][:couch_pass] %>'
+
+# Cache
+CACHES = {
+    'default': {
+         'BACKEND':  'django.core.cache.backends.<%= node[:crawler][:cache_backend] %>',
+         'LOCATION': '<%= node[:crawler][:cache_host] %>:<%= node[:crawler][:cache_port] %>',
+    }
+}
+
+# Databases
+DATABASES = {
+    'default': {
+        'ENGINE':   'django.db.backends.<%= node[:crawler][:dj_db_engine] %>',
+        'NAME':     '<%= node[:crawler][:dj_db_name] %>',
+        'USER':     '<%= node[:crawler][:dj_db_user] %>',
+        'PASSWORD': '<%= node[:crawler][:dj_db_pass] %>',
+        'HOST':     '<%= node[:crawler][:dj_db_host] %>',
+        'PORT':     '<%= node[:crawler][:dj_db_port] %>',
+    }
+}
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '<%= node[:crawler][:secret_key] %>'
+
+# Celery
+# Broker settings
+BROKER_TRANSPORT = 'couchdb'
+BROKER_HOST =      '<%= node[:crawler][:broker_host] %>'
+BROKER_PORT =      '<%= node[:crawler][:broker_port] %>'
+BROKER_USER =      '<%= node[:crawler][:broker_user] %>'
+BROKER_PASSWORD =  '<%= node[:crawler][:broker_pass] %>'
+BROKER_VHOST =     '<%= node[:crawler][:broker_vhost] %>'
+
+# Enables error emails.
+CELERY_SEND_TASK_ERROR_EMAILS = True
+
+# CELERYD_CONCURRENCY = 10
+# CELERYD_LOG_FILE = "celeryd.log"
+# CELERYD_LOG_LEVEL = "INFO"
+
+# Celery queues
+CELERY_QUEUES = queues.CELERY_QUEUES
+CELERY_ROUTES = queues.CELERY_ROUTES
+
+# Celery tasks
+CELERY_IMPORTS = ("rdc_crawler.crawler.celery.tasks", )
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.dirname(os.path.join(os.path.dirname(__file__),
+                                    '..','..', '..'))
+# Whoosh configuration
+WHOOSH_PATH = '<%= node[:crawler][:whoosh_path] %>'
+LOCK_ATTEMPTS = <%= node[:crawler][:whoosh_lock_attempts] %>

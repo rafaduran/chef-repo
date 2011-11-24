@@ -34,7 +34,7 @@ template "#{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/local/local_
 end
 
 template "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv/lib/python2.7/site-packages/rdc_crawler.pth" do
-  source "rdc_crawler.path.erb"
+  source "rdc_crawler.pth.erb"
 end
 
 # Creating Django database
