@@ -17,12 +17,35 @@
 # limitations under the License.
 #
 
-package "git" do
-  action :install
+%w{git libmemcached-dev libmysqlclient-dev libsqlite3-dev}.each do |pkg|
+    package pkg
 end
 
 git "#{node[:crawler][:repo_path]}/rdc-web-crawler" do
   repository "git://github.com/rafaduran/rdc_crawler.git"
   reference "HEAD"
   action :sync
+end
+
+include_recipe "crawler::pips"
+
+template "#{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/local/local_settings.py" do
+  source "local_settings.py.erb"
+end
+
+template "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv/lib/python2.7/site-packages/rdc_crawler.pth" do
+  source "rdc_crawler.path.erb"
+end
+
+# Creating Django database
+gem_package "mysql" do
+  action :install
+end
+
+mysql_database "create #{node[:crawler][:dj_db_name]} database" do
+  host "#{node[:crawler][:dj_db_host]}"
+  username "#{node[:crawler][:dj_db_user]}"
+  password "#{node[:crawler][:dj_db_pass]}"
+  database "#{node[:crawler][:dj_db_name]}"
+  action [:create_db]
 end
