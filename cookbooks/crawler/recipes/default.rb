@@ -49,3 +49,11 @@ mysql_database "create #{node[:crawler][:dj_db_name]} database" do
   database "#{node[:crawler][:dj_db_name]}"
   action [:create_db]
 end
+
+execute "#{node[:crawler][:repo_path]}/rdc-web-crawler/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py syncdb --noinput" do
+  action :run
+end
+
+execute "#{node[:crawler][:repo_path]}/rdc-web-crawler/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py update_couch_views" do
+  action :run
+end
