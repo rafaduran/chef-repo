@@ -49,16 +49,50 @@ Vagrant::Config.run do |config|
     end
   end
 
-  config.vm.define :web1 do |web_config|
-    web_config.vm.box = "oneiric"
-    web_config.vm.host_name = "web1.example.com"
-    web_config.vm.network('33.33.33.30',    :adapter => 1)
-    web_config.vm.network('192.168.100.30', :adapter => 2)
-    web_config.vm.customize do |vm|
+  config.vm.define :worker1 do |worker_config|
+    worker_config.vm.box = "oneiric"
+    worker_config.vm.host_name = "worker1.example.com"
+    worker_config.vm.network('33.33.33.30',    :adapter => 1)
+    worker_config.vm.network('192.168.100.30', :adapter => 2)
+    worker_config.vm.customize do |vm|
       vm.memory_size = 512
     end
 
-    web_config.vm.provision :chef_solo do |chef|
+    worker_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "crawler"
+      # You may also specify custom JSON attributes:
+      chef.json = {}
+    end
+  end
+
+  config.vm.define :worker2 do |worker_config|
+    worker_config.vm.box = "oneiric"
+    worker_config.vm.host_name = "worker2.example.com"
+    worker_config.vm.network('33.33.33.30',    :adapter => 1)
+    worker_config.vm.network('192.168.100.40', :adapter => 2)
+    worker_config.vm.customize do |vm|
+      vm.memory_size = 512
+    end
+
+    worker_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "crawler"
+      # You may also specify custom JSON attributes:
+      chef.json = {}
+    end
+  end
+
+  config.vm.define :worker3 do |worker_config|
+    worker_config.vm.box = "oneiric"
+    worker_config.vm.host_name = "worker3.example.com"
+    worker_config.vm.network('33.33.33.30',    :adapter => 1)
+    worker_config.vm.network('192.168.100.50', :adapter => 2)
+    worker_config.vm.customize do |vm|
+      vm.memory_size = 512
+    end
+
+    worker_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "cookbooks"
       chef.add_recipe "crawler"
       # You may also specify custom JSON attributes:
