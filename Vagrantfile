@@ -6,7 +6,7 @@ Vagrant::Config.run do |config|
     couch_config.vm.network('192.168.100.10', :adapter => 2)
     #couch_config.vm.forward_port "nginx", 80, 8080
     couch_config.vm.customize do |vm|
-      vm.memory_size = 512
+      vm.memory_size = 613
     end
 
     couch_config.vm.provision :chef_solo do |chef|
@@ -31,7 +31,7 @@ Vagrant::Config.run do |config|
     #common_config.vm.forward_port "mysql", 3306, 3306
     #common_config.vm.forward_port "memcached", 11211, 11211
     common_config.vm.customize do |vm|
-      vm.memory_size = 512
+      vm.memory_size = 613
     end
 
     common_config.vm.provision :chef_solo do |chef|
@@ -55,7 +55,7 @@ Vagrant::Config.run do |config|
     worker_config.vm.network('33.33.33.30',    :adapter => 1)
     worker_config.vm.network('192.168.100.30', :adapter => 2)
     worker_config.vm.customize do |vm|
-      vm.memory_size = 512
+      vm.memory_size = 613
     end
 
     worker_config.vm.provision :chef_solo do |chef|
@@ -72,7 +72,7 @@ Vagrant::Config.run do |config|
     worker_config.vm.network('33.33.33.30',    :adapter => 1)
     worker_config.vm.network('192.168.100.40', :adapter => 2)
     worker_config.vm.customize do |vm|
-      vm.memory_size = 512
+      vm.memory_size = 613
     end
 
     worker_config.vm.provision :chef_solo do |chef|
@@ -89,7 +89,7 @@ Vagrant::Config.run do |config|
     worker_config.vm.network('33.33.33.30',    :adapter => 1)
     worker_config.vm.network('192.168.100.50', :adapter => 2)
     worker_config.vm.customize do |vm|
-      vm.memory_size = 512
+      vm.memory_size = 613
     end
 
     worker_config.vm.provision :chef_solo do |chef|
