@@ -20,6 +20,14 @@
 
 include_recipe "python"
 
+python_virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv" do
+  owner "#{node[:crawler][:user]}"
+  group "#{node[:crawler][:group]}"
+  interpreter "python2.7"
+  action :create
+end
+
+
 python_pip "CouchDB" do
   virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
   action :install

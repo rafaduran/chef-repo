@@ -17,13 +17,21 @@
 # limitations under the License.
 #
 
-%w{git libmemcached-dev libmysqlclient-dev libsqlite3-dev}.each do |pkg|
+%w{git libmemcached-dev libmysqlclient-dev libsqlite3-dev libshadow-ruby1.8}.each do |pkg|
     package pkg
+end
+
+include_recipe "crawler::user"
+
+directory "#{node[:crawler][:repo_path]}" do
+  owner "#{node[:crawler][:user]}"
 end
 
 git "#{node[:crawler][:repo_path]}/rdc-web-crawler" do
   repository "git://github.com/rafaduran/rdc_crawler.git"
   reference "HEAD"
+  user "#{node[:crawler][:user]}"
+  group "#{node[:crawler][:group]}"
   action :sync
 end
 
@@ -31,10 +39,14 @@ include_recipe "crawler::pips"
 
 template "#{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/local/local_settings.py" do
   source "local_settings.py.erb"
+  owner "#{node[:crawler][:user]}"
+  group "#{node[:crawler][:group]}"
 end
 
 template "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv/lib/python2.7/site-packages/rdc_crawler.pth" do
   source "rdc_crawler.pth.erb"
+  owner "#{node[:crawler][:user]}"
+  group "#{node[:crawler][:group]}"
 end
 
 # Creating Django database
@@ -52,8 +64,10 @@ end
 
 execute "#{node[:crawler][:repo_path]}/rdc-web-crawler/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py syncdb --noinput" do
   action :run
+  user "#{node[:crawler][:user]}"
 end
 
 execute "#{node[:crawler][:repo_path]}/rdc-web-crawler/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py update_couch_views" do
   action :run
+  user "#{node[:crawler][:user]}"
 end

@@ -21,6 +21,11 @@ default[:crawler][:repo_path] = "/opt"
 default[:crawler][:develop] = true
 default[:crawler][:user_agent] = "Rdc-Crawler/#{node.crawler.version}"
 default[:crawler][:sercret_key] = "999888777666"
+default[:crawler][:user] = "crawler"
+default[:crawler][:group] = "crawler"
+# Default password is 'pass':
+# echo "pass" | makepasswd --clearfrom=- --crypt-md5 |awk '{ print $2 }'
+default[:crawler][:password] = "$1$Dz2p3V9B$GDwB6iT.TMT5eboVxQPhh."
 
 # CouchDB settings
 default[:crawler][:couch_host]  = "192.168.100.10"
