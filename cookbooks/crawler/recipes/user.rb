@@ -26,3 +26,14 @@ user "#{node[:crawler][:user]}" do
   gid "#{node[:crawler][:group]}"
   password "#{node[:crawler][:password]}"
 end
+
+directory "/home/#{node[:crawler][:user]}" do
+  owner "#{node[:crawler][:user]}"
+  group "#{node[:crawler][:user]}"
+end
+
+# Adding user to sudo group, so gaining sudoers powers
+group "sudo" do
+  action :modify
+  members "#{node[:crawler][:user]}"
+end
