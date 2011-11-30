@@ -24,7 +24,7 @@ end
 user "#{node[:crawler][:user]}" do
   home "/home/#{node[:crawler][:user]}"
   gid "#{node[:crawler][:group]}"
-  password "#{node[:crawler][:password]}"
+  password "#{node[:crawler][:password].crypt(node[:crawler][:password])}"
 end
 
 directory "/home/#{node[:crawler][:user]}" do
