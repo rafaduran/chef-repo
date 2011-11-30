@@ -1,4 +1,4 @@
-maintainer       "RDC"
+maintainer       "Rafael Durán Castañeda"
 maintainer_email "rafadurancastaneda@gmail.com"
 license          "Apache 2.0"
 description      "Installs/Configures crawler"

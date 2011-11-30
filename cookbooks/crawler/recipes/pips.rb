@@ -2,7 +2,7 @@
 # Cookbook Name:: crawler
 # Recipe:: pips
 #
-# Copyright 2011, RDC
+# Copyright 2011, Rafael Durán Castañeda
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
