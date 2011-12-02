@@ -61,8 +61,17 @@ Vagrant::Config.run do |config|
     worker_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "cookbooks"
       chef.add_recipe "crawler"
+      chef.add_recipe "celery"
       # You may also specify custom JSON attributes:
-      chef.json = {}
+      chef.json = {
+        :celery => {
+            :command    => "/opt/rdc-web-crawler/tools/with_venv.sh python /opt/rdc-web-crawler/rdc_crawler/manage.py celeryd",
+            :user       => "crawler",
+            :group      => "crawler",
+            :virtualenv => "/opt/rdc-web-crawler/.crawler-venv",
+            :beat       => false
+        }
+      }
     end
   end
 
@@ -78,8 +87,17 @@ Vagrant::Config.run do |config|
     worker_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "cookbooks"
       chef.add_recipe "crawler"
+      chef.add_recipe "celery"
       # You may also specify custom JSON attributes:
-      chef.json = {}
+      chef.json = {
+        :celery => {
+            :command    => "/opt/rdc-web-crawler/tools/with_venv.sh python /opt/rdc-web-crawler/rdc_crawler/manage.py celeryd",
+            :user       => "crawler",
+            :group      => "crawler",
+            :virtualenv => "/opt/rdc-web-crawler/.crawler-venv",
+            :beat       => false
+        }
+      }
     end
   end
 
