@@ -32,6 +32,20 @@ directory "/home/#{node[:crawler][:user]}" do
   group "#{node[:crawler][:user]}"
 end
 
+directory "/home/#{node[:crawler][:user]}/.ssh" do
+  owner node[:crawler][:user]
+  group node[:crawler][:user]
+  mode "0700"
+end
+
+template "/home/#{node[:crawler][:user]}/.ssh/authorized_keys" do
+  source "authorized_keys.erb"
+  owner node[:crawler][:user]
+  group node[:crawler][:user]
+  mode "0600"
+  variables :ssh_keys => node['crawler']['ssh_keys']
+end
+
 # Adding user to sudo group, so gaining sudoers powers
 group "sudo" do
   action :modify
