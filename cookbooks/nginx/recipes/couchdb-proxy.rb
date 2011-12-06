@@ -19,6 +19,9 @@
 #
 
 # Just using a specific template for a CouchDB proxy
+
+include_recipe "apt"
+
 node[:nginx][:template] = "couchdb-proxy/default-site.erb"
 
 include_recipe "nginx"

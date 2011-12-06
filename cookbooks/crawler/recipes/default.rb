@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "apt"
+
 %w{git libmemcached-dev libmysqlclient-dev libsqlite3-dev libshadow-ruby1.8}.each do |pkg|
     package pkg
 end
