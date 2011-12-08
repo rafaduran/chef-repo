@@ -78,7 +78,7 @@ python_pip "BeautifulSoup" do
   action :install
 end
 
-python_pip "-e git://github.com/rafaduran/kombu.git#egg=Kombu" do
+python_pip "Kombu" do
   virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
   action :install
 end
@@ -90,11 +90,6 @@ if node[:crawler][:develop]
   end
 
   python_pip "pep8" do
-    virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
-    action :install
-  end
-
-  python_pip "pysqlite" do
     virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
     action :install
   end

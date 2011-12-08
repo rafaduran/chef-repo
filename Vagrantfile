@@ -76,7 +76,8 @@ Vagrant::Config.run do |config|
             :workers    => 2
         },
         :crawler => {
-            :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"]
+            :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
+            :develop    => false
         }
       }
     end
@@ -106,7 +107,8 @@ Vagrant::Config.run do |config|
             :workers    => 2
         },
         :crawler => {
-            :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"]
+            :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
+            :develop    => false
         }
       }
     end
@@ -136,7 +138,8 @@ Vagrant::Config.run do |config|
             :workers    => 2
         },
         :crawler => {
-            :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"]
+            :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
+            :develop    => false
         }
       }
     end
