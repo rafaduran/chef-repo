@@ -20,7 +20,8 @@ Vagrant::Config.run do |config|
           :admin_password => "pass"
         },
         :nginx => {
-            :worker_processes => 4
+            :worker_processes => 4,
+            :client_max_body_size => "5M"
         }
       }
     end
