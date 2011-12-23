@@ -19,7 +19,7 @@ Vagrant::Config.run do |config|
           :admin_password => "pass"
         },
         :nginx => {
-            :worker_processes => 4,
+            :worker_processes     => 4,
             :client_max_body_size => "5M"
         }
       }
@@ -141,22 +141,31 @@ Vagrant::Config.run do |config|
     end
   end
 
-  config.vm.define :indexer do |indexer_config|
-    indexer_config.vm.box = "oneiric"
-    indexer_config.vm.host_name = "indexer.example.com"
-    indexer_config.vm.network('192.168.100.60', :adapter => 1)
-    indexer_config.vm.customize do |vm|
+  config.vm.define :webind do |webind_config|
+    webind_config.vm.box = "oneiric"
+    webind_config.vm.host_name = "webind.example.com"
+    webind_config.vm.network('192.168.100.60', :adapter => 1)
+    webind_config.vm.customize do |vm|
       vm.memory_size = 613
     end
 
-    indexer_config.vm.provision :chef_solo do |chef|
+    webind_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "cookbooks"
       chef.add_recipe "crawler::indexer"
+      chef.add_recipe "crawler::web"
+     chef.add_recipe "nginx"
       # You may also specify custom JSON attributes:
       chef.json = {
         :crawler => {
             :ssh_keys   => ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
-            :develop    => false
+            :develop               => false,
+            :log_level             => "info",
+            :gunicorn_worker_class => "gevent",
+            :gunicorn_workers      => 2
+        },
+        :nginx => {
+            :template      => "gunicorn-proxy/default-site.erb",
+            :gunicorn_port => 8000
         }
       }
     end
