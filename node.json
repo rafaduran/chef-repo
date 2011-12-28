@@ -1,0 +1,11 @@
+{ 
+    "couchdb": {
+        "admin_name": "admin",
+        "admin_password": "pass"
+    },
+    "nginx": {
+        "worker_processes": 4,
+        "client_max_body_size" :"5M"
+    },
+    "run_list": ["nginx::default", "couchdb::crawler"]
+}
