@@ -14,9 +14,9 @@ gem install ohai --no-rdoc --no-ri --verbose
 gem install chef --no-rdoc --no-ri --verbose --version 0.10.8
 
 mkdir -p /etc/chef
-apt-get install git
-git clone -b crawler/vagrant https://rafaduran@github.com/rafaduran/chef-repo.git /opt/chef-repo
-cat > /opt/chef/repo solo.rb << EOF
+apt-get install -y git --force-yes
+git clone -b crawler/vagrant https://github.com/rafaduran/chef-repo.git /opt/chef-repo
+cat > /opt/chef-repo/solo.rb << EOF
 current_dir                     = File.dirname(__FILE__)
 file_cache_path                 "#{current_dir}/.chef-solo"
 cookbook_path                   "#{current_dir}/cookbooks"
