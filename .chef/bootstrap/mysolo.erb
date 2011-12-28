@@ -1,0 +1,26 @@
+bash -c '
+if [ ! -f /usr/bin/chef-client ]; then
+  apt-get update
+  apt-get install -y ruby ruby1.8-dev build-essential wget libruby-extras libruby1.8-extras
+  cd /tmp
+  wget http://production.cf.rubygems.org/rubygems/rubygems-1.6.2.tgz
+  tar zxf rubygems-1.6.2.tgz
+  cd rubygems-1.6.2
+  ruby setup.rb --no-format-executable
+fi
+
+gem update --no-rdoc --no-ri
+gem install ohai --no-rdoc --no-ri --verbose
+gem install chef --no-rdoc --no-ri --verbose --version 0.10.8
+
+mkdir -p /etc/chef
+apt-get install git
+git clone -b crawler/vagrant https://rafaduran@github.com/rafaduran/chef-repo.git /opt/chef-repo
+cat > /opt/chef/repo solo.rb << EOF
+current_dir                     = File.dirname(__FILE__)
+file_cache_path                 "#{current_dir}/.chef-solo"
+cookbook_path                   "#{current_dir}/cookbooks"
+log_level                       :info
+EOF
+
+/usr/bin/chef-solo -c /opt/chef-repo/solo.rb -j /opt/chef-repo/node.json'

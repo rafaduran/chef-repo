@@ -7,5 +7,5 @@
         "worker_processes": 4,
         "client_max_body_size" :"5M"
     },
-    "run_list": ["nginx::default", "couchdb::crawler"]
+    "run_list": ["nginx::couchdb-proxy", "couchdb::crawler"]
 }
