@@ -6,3 +6,4 @@
 *.swp
 Gemfile.lock
 solo.rb
+dna.json
