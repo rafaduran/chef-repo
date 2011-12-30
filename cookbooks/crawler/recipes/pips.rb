@@ -93,6 +93,11 @@ python_pip "django-mediagenerator" do
   action :install
 end
 
+python_pip "docutils" do
+  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  action :install
+end
+
 if node[:crawler][:develop] 
   python_pip "pylint" do
     virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
