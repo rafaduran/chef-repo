@@ -1,0 +1,22 @@
+{
+  "chef_type": "role",
+  "override_attributes": {
+    "mysql": {
+        "allow_remote_root": true,
+        "bind_address": "0.0.0.0"
+    }
+  },
+  "default_attributes": {
+    "mysql": {
+        "server_root_password": "pass"
+    }
+  },
+  "description": "Common resource node, including MySQL server and Memcached",
+  "env_run_lists": {
+  },
+  "name": "common",
+  "run_list": [
+      "recipe[apt]", "recipe[mysql::server]", "recipe[memcached]"
+  ],
+  "json_class": "Chef::Role"
+}

@@ -1,80 +1,20 @@
 { 
-    "couchdb": {
-        "couchdb": {
-            "admin_name": "admin",
-            "admin_password": "pass"
-        },
-        "nginx": {
-            "worker_processes": 4,
-            "client_max_body_size" :"5M"
-        },
-        "run_list": ["recipe[nginx::couchdb-proxy]", "recipe[couchdb::crawler]"]
+    "couchdb1": {
+        "run_list": ["role[couchdb]"]
     },
-    "common": {
-        "mysql": {
-            "server_root_password": "pass",
-            "allow_remote_root": true,
-            "bind_address": "0.0.0.0"
-        },
-        "run_list": ["recipe[mysql::server]","recipe[memcached]"]
+    "common1": {
+        "run_list": ["role[common]"]
     },
     "worker1": {
-        "celery": {
-            "command": "/opt/rdc-web-crawler/tools/with_venv.sh python /opt/rdc-web-crawler/rdc_crawler/manage.py celeryd",
-            "user": "crawler",
-            "group": "crawler",
-            "virtualenv": "/opt/rdc-web-crawler/.crawler-venv",
-            "beat": false,
-            "workers": 2
-        },
-        "crawler": {
-            "ssh_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
-            "develop": false
-        },
-        "run_list": ["recipe[crawler]","recipe[celery]"]
+        "run_list": ["role[crawler-worker]"]
     },
     "worker2": {
-        "celery": {
-            "command": "/opt/rdc-web-crawler/tools/with_venv.sh python /opt/rdc-web-crawler/rdc_crawler/manage.py celeryd",
-            "user": "crawler",
-            "group": "crawler",
-            "virtualenv": "/opt/rdc-web-crawler/.crawler-venv",
-            "beat": false,
-            "workers": 2
-        },
-        "crawler": {
-            "ssh_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
-            "develop": false
-        },
-        "run_list": ["recipe[crawler]","recipe[celery]"]
+        "run_list": ["role[crawler-worker]"]
     },
     "worker3": {
-        "celery": {
-            "command": "/opt/rdc-web-crawler/tools/with_venv.sh python /opt/rdc-web-crawler/rdc_crawler/manage.py celeryd",
-            "user": "crawler",
-            "group": "crawler",
-            "virtualenv": "/opt/rdc-web-crawler/.crawler-venv",
-            "beat": false,
-            "workers": 2
-        },
-        "crawler": {
-            "ssh_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
-            "develop": false
-        },
-        "run_list": ["recipe[crawler]","recipe[celery]"]
+        "run_list": ["role[crawler-worker]"]
     },
     "webind": {
-        "crawler": {
-            "ssh_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
-            "develop": false,
-            "log_level": "info",
-            "gunicorn_worker_class": "gevent",
-            "gunicorn_workers": 2
-        },
-        "nginx": {
-            "template": "gunicorn-proxy/default-site.erb",
-            "gunicorn_port": 8000
-        },
-        "run_list": ["recipe[crawler::indexer]","recipe[crawler::web]", "recipe[nginx]"]
+        "run_list": ["recipe[crawler::indexer]","role[crawler-web"]
     }
 }

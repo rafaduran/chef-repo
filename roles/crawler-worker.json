@@ -1,0 +1,29 @@
+{
+  "chef_type": "role",
+  "override_attributes": {
+    "celery": {
+        "command": "/opt/rdc-web-crawler/tools/with_venv.sh python /opt/rdc-web-crawler/rdc_crawler/manage.py celeryd",
+        "user": "crawler",
+        "group": "crawler"
+    }
+  },
+  "default_attributes": {
+    "celery": {
+        "virtualenv": "/opt/rdc-web-crawler/.crawler-venv",
+        "beat": false,
+        "workers": 2
+    },
+    "crawler": {
+        "ssh_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVQXqzLcLL/IWdsWkdveVBl1iKjwjHIFdSqTVEl5TkM1Xps/3MEo4eBrx24j7TG05D6brBudDe5vgmP02GaCPwq8PRZVt6dQc0BYVHWftRD3rA+rerrByzLt2s5nq6v0r2k67asxLTFVVGAlH7OtdK0QTufAA4jqZx71Zs/NAd4F7btuaZKumdKs1ZXrRaTh0G4bpRvipOl/r2b3/AgtHYpZgKvn6/22fBVXDlXnvK/jMTfuQhIXxoDepeTGd133xvZrNslqsZiVCy3qeTo7FdA4WBuoHjnZAu8+7GPeuMDzSHChwdF5hNEW8roJbGK3YX9Se/xA0Hoc4+NyCOOqv crawler insecure public key"],
+        "develop": false
+    }
+  },
+  "description": "Crawler/Celery worker",
+  "env_run_lists": {
+  },
+  "name": "crawler-worker",
+  "run_list": [
+      "recipe[apt]", "recipe[crawler]", "recipe[celery]"
+  ],
+  "json_class": "Chef::Role"
+}

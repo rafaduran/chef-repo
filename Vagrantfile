@@ -6,7 +6,7 @@ node_json = JSON.parse(File.read("#{current_dir}/node.json"))
 Vagrant::Config.run do |config|
     config.vm.define :couchdb do |couch_config|
         couch_config.vm.box = "oneiric"
-        couch_config.vm.host_name = "couchdb.example.com"
+        couch_config.vm.host_name = "couchdb1.example.com"
         couch_config.vm.network('192.168.100.10', :adapter => 1)
         #couch_config.vm.forward_port "nginx", 80, 8080
         couch_config.vm.customize do |vm|
@@ -15,15 +15,16 @@ Vagrant::Config.run do |config|
 
         couch_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
-            chef.node_name = "couchdb"
+            chef.roles_path = "roles"
+            chef.node_name = "couchdb1"
             chef.run_list = node_json[chef.node_name]["run_list"]
-            chef.json = node_json[chef.node_name]
+ #           chef.json = node_json[chef.node_name]
         end
     end
 
     config.vm.define :common do |common_config|
         common_config.vm.box = "oneiric"
-        common_config.vm.host_name = "common.example.com"
+        common_config.vm.host_name = "common1.example.com"
         common_config.vm.network('192.168.100.20', :adapter => 1)
         #common_config.vm.forward_port "mysql", 3306, 3306
         #common_config.vm.forward_port "memcached", 11211, 11211
@@ -33,10 +34,10 @@ Vagrant::Config.run do |config|
 
         common_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
-            chef.node_name = "common"
+            chef.node_name = "common1"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
-            chef.json = node_json[chef.node_name]
+#            chef.json = node_json[chef.node_name]
         end
     end
 
@@ -53,7 +54,7 @@ Vagrant::Config.run do |config|
             chef.node_name = "worker1"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
-            chef.json = node_json[chef.node_name]
+  #          chef.json = node_json[chef.node_name]
         end
     end
 
@@ -70,7 +71,7 @@ Vagrant::Config.run do |config|
             chef.node_name = "worker2"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
-            chef.json = node_json[chef.node_name]
+#            chef.json = node_json[chef.node_name]
         end
     end
 
@@ -87,7 +88,7 @@ Vagrant::Config.run do |config|
             chef.node_name = "worker3"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
-            chef.json = node_json[chef.node_name]
+ #           chef.json = node_json[chef.node_name]
         end
     end
 
@@ -104,7 +105,7 @@ Vagrant::Config.run do |config|
             chef.node_name = "webind"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
-            chef.json = node_json[chef.node_name]
+ #           chef.json = node_json[chef.node_name]
         end
     end
 

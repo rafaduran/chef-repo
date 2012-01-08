@@ -1,0 +1,19 @@
+{
+  "chef_type": "role",
+  "override_attributes": {
+  },
+  "default_attributes": {
+    "couchdb": {
+        "admin_name": "admin",
+        "admin_password": "pass"
+    }
+  },
+  "description": "CouchDB under Nginx proxy",
+  "env_run_lists": {
+  },
+  "name": "couchdb",
+  "run_list": [
+      "recipe[apt]", "recipe[couchdb::crawler]", "role[couchdb-proxy]"
+  ],
+  "json_class": "Chef::Role"
+}
