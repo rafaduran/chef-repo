@@ -11,4 +11,8 @@ script
 exec su -c "<%= node[:crawler][:repo_path] %>/rdc-web-crawler/tools/with_venv.sh python <%= node[:crawler][:repo_path] %>/rdc-web-crawler/rdc_crawler/manage.py run_gunicorn --workers=<%= node[:crawler][:gunicorn_workers] %> --worker-class=<%= node[:crawler][:gunicorn_worker_class] %> --log-level=<%= node[:crawler][:log_level] %>" <%= node[:crawler][:user] %>
 end script
 
+post-stop script
+exec kill -9 `pgrep -u crawler -f run_gunicorn`
+end script
+
 respawn
