@@ -1,0 +1,7 @@
+# Add base role/recipe
+# Use BigCouch (https://github.com/cloudant/cloudant_cookbooks) instead of CouchDB
+# AWS cloud formation
+# Chef Server
+# Better Crawler Worker/Web/Indexer role separation
+# Try Cassandra/HBase
+# Move from Woosh to Solr 
