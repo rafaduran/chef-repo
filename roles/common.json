@@ -7,9 +7,6 @@
     }
   },
   "default_attributes": {
-    "mysql": {
-        "server_root_password": "pass"
-    }
   },
   "description": "Common resource node, including MySQL server and Memcached",
   "env_run_lists": {

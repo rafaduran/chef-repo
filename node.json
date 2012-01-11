@@ -3,7 +3,10 @@
         "run_list": ["role[couchdb]"]
     },
     "common1": {
-        "run_list": ["role[common]"]
+        "run_list": ["role[common]"],
+        "mysql": {
+            "server_root_password": "pass"
+        }
     },
     "worker1": {
         "run_list": ["role[crawler-worker]"]

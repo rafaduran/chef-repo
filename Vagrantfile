@@ -38,7 +38,7 @@ Vagrant::Config.run do |config|
             chef.node_name = "common1"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
-#            chef.json = node_json[chef.node_name]
+            chef.json = node_json[chef.node_name]
         end
     end
 
