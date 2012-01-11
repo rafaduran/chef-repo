@@ -34,6 +34,7 @@ Vagrant::Config.run do |config|
 
         common_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
+            chef.roles_path = "roles"
             chef.node_name = "common1"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
@@ -51,6 +52,7 @@ Vagrant::Config.run do |config|
 
         worker_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
+            chef.roles_path = "roles"
             chef.node_name = "worker1"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
@@ -68,6 +70,7 @@ Vagrant::Config.run do |config|
 
         worker_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
+            chef.roles_path = "roles"
             chef.node_name = "worker2"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
@@ -85,6 +88,7 @@ Vagrant::Config.run do |config|
 
         worker_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
+            chef.roles_path = "roles"
             chef.node_name = "worker3"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
@@ -102,6 +106,7 @@ Vagrant::Config.run do |config|
 
         webind_config.vm.provision :chef_solo do |chef|
             chef.cookbooks_path = "cookbooks"
+            chef.roles_path = "roles"
             chef.node_name = "webind"
             chef.run_list = node_json[chef.node_name]["run_list"]
             # You may also specify custom JSON attributes:
