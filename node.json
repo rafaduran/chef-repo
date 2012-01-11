@@ -18,6 +18,6 @@
         "run_list": ["role[crawler-worker]"]
     },
     "webind": {
-        "run_list": ["recipe[crawler::indexer]","role[crawler-web"]
+        "run_list": ["role[crawler-web]","recipe[crawler::indexer]"]
     }
 }
