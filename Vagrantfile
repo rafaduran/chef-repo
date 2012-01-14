@@ -22,6 +22,24 @@ Vagrant::Config.run do |config|
         end
     end
 
+   config.vm.define :bigcouch1 do |bigcouch1_config|
+        bigcouch1_config.vm.box = "oneiric"
+        bigcouch1_config.vm.host_name = "bigcouch1.example.com"
+        bigcouch1_config.vm.network('192.168.100.70', :adapter => 1)
+        #bigcouch1_config.vm.forward_port "nginx", 80, 8080
+        bigcouch1_config.vm.customize do |vm|
+            vm.memory_size = 613
+        end
+
+        bigcouch1_config.vm.provision :chef_solo do |chef|
+            chef.cookbooks_path = "cookbooks"
+            chef.roles_path = "roles"
+            chef.node_name = "bigcouch1"
+            chef.run_list = node_json[chef.node_name]["run_list"]
+ #           chef.json = node_json[chef.node_name]
+        end
+    end
+
     config.vm.define :common do |common_config|
         common_config.vm.box = "oneiric"
         common_config.vm.host_name = "common1.example.com"
