@@ -2,6 +2,9 @@
     "couchdb1": {
         "run_list": ["role[couchdb]"]
     },
+    "bigcouch1": {
+        "run_list": ["recipe[bigcouch]"]
+    },
     "common1": {
         "run_list": ["role[common]"],
         "mysql": {

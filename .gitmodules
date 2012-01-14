@@ -1,0 +1,12 @@
+[submodule "cookbooks/bigcouch"]
+	path = cookbooks/bigcouch
+	url = git@github.com:rafaduran/cloudant_cookbooks.git
+[submodule "cookbooks/spidermonkey"]
+	path = cookbooks/spidermonkey
+	url = git@github.com:rafaduran/cloudant_cookbooks.git
+[submodule "cookbooks/libicu"]
+	path = cookbooks/libicu
+	url = git@github.com:rafaduran/cloudant_cookbooks.git
+[submodule "cookbooks/libcurl"]
+	path = cookbooks/libcurl
+	url = git@github.com:rafaduran/cloudant_cookbooks.git

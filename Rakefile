@@ -63,3 +63,9 @@ task :bundle_cookbook, :cookbook do |t, args|
 
   FileUtils.rm_rf temp_dir
 end
+
+desc "Inits git submodules"
+task :submodule_init do
+  system("git submodule init")
+  system("git submodule update")
+end
