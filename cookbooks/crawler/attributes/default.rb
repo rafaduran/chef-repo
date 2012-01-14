@@ -18,6 +18,8 @@
 # Generic settings
 default[:crawler][:version] = "0.0"
 default[:crawler][:repo_path] = "/opt"
+default[:crawler][:path] = "#{node.crawler.repo_path}/rdc-web-crawler"
+default[:crawler][:venv_path] = "#{node.crawler.path}/.crawler-venv"
 default[:crawler][:develop] = true
 default[:crawler][:user_agent] = "Rdc-Crawler/#{node.crawler.version}"
 default[:crawler][:secret_key] = "999888777666"

@@ -27,7 +27,7 @@ directory "#{node[:crawler][:repo_path]}" do
   owner "#{node[:crawler][:user]}"
 end
 
-git "#{node[:crawler][:repo_path]}/rdc-web-crawler" do
+git "#{node[:crawler][:path]}" do
   repository "git://github.com/rafaduran/rdc_crawler.git"
   reference "HEAD"
   user "#{node[:crawler][:user]}"
@@ -37,13 +37,13 @@ end
 
 include_recipe "crawler::pips"
 
-template "#{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/local/local_settings.py" do
+template "#{node[:crawler][:path]}/rdc_crawler/local/local_settings.py" do
   source "local_settings.py.erb"
   owner "#{node[:crawler][:user]}"
   group "#{node[:crawler][:group]}"
 end
 
-template "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv/lib/python2.7/site-packages/rdc_crawler.pth" do
+template "#{node[:crawler][:venv_path]}/lib/python2.7/site-packages/rdc_crawler.pth" do
   source "rdc_crawler.pth.erb"
   owner "#{node[:crawler][:user]}"
   group "#{node[:crawler][:group]}"
@@ -62,12 +62,13 @@ mysql_database "create #{node[:crawler][:dj_db_name]} database" do
   action [:create_db]
 end
 
-execute "#{node[:crawler][:repo_path]}/rdc-web-crawler/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py syncdb --noinput" do
+execute "#{node[:crawler][:path]}/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py syncdb --noinput" do
   action :run
   user "#{node[:crawler][:user]}"
 end
 
-execute "#{node[:crawler][:repo_path]}/rdc-web-crawler/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py update_couch_views" do
+execute "#{node[:crawler][:path]}/tools/with_venv.sh python #{node[:crawler][:repo_path]}/rdc-web-crawler/rdc_crawler/manage.py update_couch_views" do
   action :run
   user "#{node[:crawler][:user]}"
 end
+

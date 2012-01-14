@@ -20,7 +20,7 @@
 
 include_recipe "python"
 
-python_virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv" do
+python_virtualenv "#{node[:crawler][:venv_path]}" do
   owner "#{node[:crawler][:user]}"
   group "#{node[:crawler][:group]}"
   interpreter "python2.7"
@@ -29,93 +29,88 @@ end
 
 
 python_pip "CouchDB" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "Celery" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "django" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "django-celery" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "celerymon" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "python-memcached" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
-  action :install
-end
-
-python_pip "pylibmc" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "MySQL-python" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "Whoosh" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "BeautifulSoup" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "Kombu" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "gunicorn" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "django-mediagenerator" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 python_pip "docutils" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+  virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
 
 if node[:crawler][:develop] 
   python_pip "pylint" do
-    virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+    virtualenv "#{node[:crawler][:venv_path]}"
     action :install
   end
 
   python_pip "pep8" do
-    virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+    virtualenv "#{node[:crawler][:venv_path]}"
     action :install
   end
 
   python_pip "Fabric" do
-    virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+    virtualenv "#{node[:crawler][:venv_path]}"
     action :install
   end
 
   python_pip "Jinja2" do
-    virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
+    virtualenv "#{node[:crawler][:venv_path]}"
     action :install
   end
 end
