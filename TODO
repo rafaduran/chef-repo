@@ -3,5 +3,9 @@
 # AWS cloud formation
 # Chef Server
 # Better Crawler Worker/Web/Indexer role separation
+## Specific django installed apps
+## Don't install unused pips
 # Try Cassandra/HBase
 # Move from Woosh to Solr 
+# Use Celery queues
+# Move from MySQL to PostgreSQL

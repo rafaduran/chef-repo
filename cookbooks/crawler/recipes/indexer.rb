@@ -26,11 +26,6 @@ template "/etc/init/indexer.conf" do
   mode 0750
 end
 
-# ln -s /lib/init/upstart-job /etc/init.d/indexer
-link "/lib/init/upstart-job" do
-  to "/etc/init.d/indexer"
-end
-
 service "indexer" do
   provider Chef::Provider::Service::Upstart
   enabled true

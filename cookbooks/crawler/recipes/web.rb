@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: crawler
-# Recipe:: pips
+# Recipe:: web
 #
 # Copyright 2011, Rafael Durán Castañeda
 #
@@ -20,16 +20,13 @@
 
 include_recipe "crawler::default"
 
+node.set_unless['gunicorn']['log_dir'] = "/var/log/gunicorn"
+
 package "libevent-dev" do
   action :install
 end
 
 python_pip "gunicorn" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
-  action :install
-end
-
-python_pip "eventlet" do
   virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
   action :install
 end
@@ -46,9 +43,9 @@ template "/etc/init/gunicorn.conf" do
   mode   0750
 end
 
-# ln -s /lib/init/upstart-job /etc/init.d/indexer
-link "/lib/init/upstart-job" do
-  to "/etc/init.d/gunicorn"
+directory "#{node[:gunicorn][:log_dir]}" do
+  owner "#{node[:crawler][:user]}"
+  group "#{node[:crawler][:user]}"
 end
 
 service "gunicorn" do
