@@ -14,9 +14,9 @@ SERVER = 'http://<%= node[:crawler][:couch_host] %><%- if node[:crawler][:couch_
 # Crawler user-agent
 USER_AGENT = '<%= node[:crawler][:user_agent] %>'
 # CouchDB user
-COUCH_USER = '<%= node[:crawler][:couch_user] %>'
+<% if not node["crawler"]["couch_user"] -%>#<% end -%>COUCH_USER = '<%= node[:crawler][:couch_user] %>'
 # CouchDB user password
-COUCH_PASS = '<%= node[:crawler][:couch_pass] %>'
+<% if not node["crawler"]["couch_user"] -%>#<% end -%>COUCH_PASS = '<%= node[:crawler][:couch_pass] %>'
 
 # Cache
 CACHES = {
