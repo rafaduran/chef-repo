@@ -73,7 +73,7 @@ python_pip "BeautifulSoup" do
   action :install
 end
 
-python_pip "Kombu" do
+python_pip "-e git+https://github.com/rafaduran/kombu.git#egg=kombu" do
   virtualenv "#{node[:crawler][:venv_path]}"
   action :install
 end
