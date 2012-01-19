@@ -3,7 +3,30 @@
         "run_list": ["role[couchdb]"]
     },
     "bigcouch1": {
+        "bigcouch": {
+          "name": "192.168.99.10"
+        },
         "run_list": ["recipe[bigcouch]"]
+    },
+    "bigcouch2": {
+        "bigcouch": {
+          "name": "192.168.99.20"
+        },
+        "run_list": ["recipe[bigcouch]"]
+    },
+    "bigcouch3": {
+        "bigcouch": {
+          "name": "192.168.99.30",
+          "nodes": ["bigcouch@192.168.99.10", "bigcouch@192.168.99.20"]
+        },
+        "run_list": ["recipe[bigcouch::crawler]"]
+    },
+    "haproxy1": {
+      "haproxy": {
+        "pool_members": ["192.168.99.10", "192.168.99.20", "192.168.99.30"],
+        "enable_admin": true
+      },
+      "run_list": ["recipe[apt]","recipe[haproxy]"]
     },
     "common1": {
         "run_list": ["role[common]"],
