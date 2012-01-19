@@ -30,9 +30,9 @@ default[:crawler][:password] = "pass"
 # CouchDB settings
 default[:crawler][:couch_host]  = "192.168.100.10"
 default[:crawler][:couch_port]  = ""
-default[:crawler][:couch_vhost] = "couchdb"
-default[:crawler][:couch_user]  = "admin"
-default[:crawler][:couch_pass]  = "pass"
+default[:crawler][:couch_vhost] = nil
+default[:crawler][:couch_user]  = nil
+default[:crawler][:couch_pass]  = nil
 
 # Cache settings
 default[:crawler][:cache_backend] = "memcached.MemcachedCache"
@@ -52,7 +52,7 @@ default[:crawler][:broker_host]  = node.crawler.couch_host
 default[:crawler][:broker_port]  = "80"
 default[:crawler][:broker_user]  = node.crawler.couch_user
 default[:crawler][:broker_pass]  = node.crawler.couch_pass
-default[:crawler][:broker_vhost] = "#{node.crawler.couch_vhost}/celery"
+default[:crawler][:broker_vhost] = "#{node.crawler.couch_vhost}celery"
 
 # Whoosh settings
 default[:crawler][:whoosh_path] = "#{node.crawler.repo_path}/rdc-web-crawler/whoosh"
