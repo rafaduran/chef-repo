@@ -10,3 +10,6 @@
 [submodule "cookbooks/libcurl"]
 	path = cookbooks/libcurl
 	url = git@github.com:rafaduran/cloudant_cookbooks.git
+[submodule "cookbooks/celery"]
+	path = cookbooks/celery
+	url = git@github.com:rafaduran/celery-chef.git
