@@ -22,16 +22,7 @@ include_recipe "crawler::default"
 
 node.set_unless['gunicorn']['log_dir'] = "/var/log/gunicorn"
 
-package "libevent-dev" do
-  action :install
-end
-
 python_pip "gunicorn" do
-  virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
-  action :install
-end
-
-python_pip "gevent" do
   virtualenv "#{node[:crawler][:repo_path]}/rdc-web-crawler/.crawler-venv"
   action :install
 end

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-%w{git libmemcached-dev libmysqlclient-dev libshadow-ruby1.8}.each do |pkg|
+%w{git libmemcached-dev libmysqlclient-dev libshadow-ruby1.8 libevent-dev}.each do |pkg|
     package pkg
 end
 
