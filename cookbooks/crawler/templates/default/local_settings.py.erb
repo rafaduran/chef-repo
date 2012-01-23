@@ -75,3 +75,9 @@ EMAIL_FILE_PATH = os.path.dirname(os.path.join(os.path.dirname(__file__),
 # Whoosh configuration
 WHOOSH_PATH = '<%= node[:crawler][:whoosh_path] %>'
 LOCK_ATTEMPTS = <%= node[:crawler][:whoosh_lock_attempts] %>
+MAX_TIME = 120
+SLEEP_TIME = 5
+MAX_SLEEP = 60
+
+TEST_RUNNER = 'djcelery.contrib.test_runner.CeleryTestSuiteRunner'
+
