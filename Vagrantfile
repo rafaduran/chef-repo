@@ -6,25 +6,6 @@ current_dir = File.dirname(__FILE__)
 node_json = JSON.parse(File.read("#{current_dir}/node.json"))
 
 Vagrant::Config.run do |config|
-  config.vm.define :couchdb do |couch_config|
-    couch_config.vm.box = "oneiric"
-    couch_config.vm.box_url = box_url
-    couch_config.vm.host_name = "couchdb1.example.com"
-    couch_config.vm.network('192.168.100.70', :adapter => 1)
-    #couch_config.vm.forward_port "nginx", 80, 8080
-    couch_config.vm.customize do |vm|
-      vm.memory_size = 613
-    end
-
-    couch_config.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = "cookbooks"
-      chef.roles_path = "roles"
-      chef.node_name = "couchdb1"
-      chef.run_list = node_json[chef.node_name]["run_list"]
- #       chef.json = node_json[chef.node_name]
-    end
-  end
-
   config.vm.define :bigcouch1 do |bigcouch1_config|
     bigcouch1_config.vm.box = "oneiric"
     bigcouch1_config.vm.host_name = "bigcouch1.example.com"
