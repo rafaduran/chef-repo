@@ -1,0 +1,18 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (1.4.4)
+    chef-client (1.1.4)
+
+GIT
+  remote: https://github.com/rafaduran/chef-mongodb
+  ref: master
+  sha: a0e53d6dd5369f75281a4fb9c72c484a597c6233
+  specs:
+    mongodb (0.12.0)
+      apt (>= 0.0.0)
+
+DEPENDENCIES
+  chef-client (>= 0)
+  mongodb (>= 0)
+
