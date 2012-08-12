@@ -9,9 +9,24 @@ BOXES = {
     :name => 'precise64',
     :url  => 'http://files.vagrantup.com/precise64.box',
   },
+  # Chef 0.10.8
   :debian => {
     :name => 'squeeze64',
     :url  => 'http://dl.dropbox.com/u/937870/VMs/squeeze64.box',
+  },
+  :centos => {
+    :name => 'centos-5.7-x86_64',
+    :url  => 'http://dl.dropbox.com/u/8072848/centos-5.7-x86_64.box',
+  },
+  # No Chef
+  :openbsd => {
+    :name => 'openbsd50-i386',
+    :url  => 'https://s3-eu-west-1.amazonaws.com/rosstimson-vagrant-boxes/openbsd50-i386.box',
+  },
+  # No chef
+  :archlinux=> {
+    :name => 'archlinux',
+    :url  => 'http://vagrant.pouss.in/archlinux_2012-07-02.box',
   },
 }
 
@@ -34,7 +49,8 @@ Vagrant::Config.run do |config|
       chef.cookbooks_path = COOKBOOKS_PATH
       chef.roles_path = ROLES_PATH
       chef.data_bags_path = DATABAGS_PATH
-      chef.add_role "mongodb-default"
+      chef.add_recipe "minitest-handler"
+      chef.add_role "mongodb"
     end
   end
 
@@ -49,14 +65,65 @@ Vagrant::Config.run do |config|
     # Networking settings
     debian_mongodb.vm.network :hostonly, "192.168.33.11"
     # Forwrdring MongoDB port
-    debian_mongodb.vm.forward_port 27017, 27017
+    debian_mongodb.vm.forward_port 27017, 17027
 
     debian_mongodb.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = COOKBOOKS_PATH
       chef.roles_path = ROLES_PATH
       chef.data_bags_path = DATABAGS_PATH
+      chef.add_recipe "minitest-handler"
       chef.add_role "mongodb"
     end
   end
+
+  config.vm.define :centos do |centos|
+    # BOX settings
+    centos.vm.box     = BOXES[:centos][:name]
+    centos.vm.box_url = BOXES[:centos][:url]
+
+    # Boot with a GUI so you can see the screen. (Default is headless)
+    # config.vm.boot_mode = :gui
+
+    centos.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = COOKBOOKS_PATH
+      chef.roles_path = ROLES_PATH
+      chef.data_bags_path = DATABAGS_PATH
+      chef.add_recipe "minitest-handler"
+      chef.add_recipe "enviro"
+    end
+  end
+
+# Commented out boxes doesn't work as expected
+#  config.vm.define :openbsd do |openbsd|
+#    # BOX settings
+#    openbsd.vm.box     = BOXES[:openbsd][:name]
+#    openbsd.vm.box_url = BOXES[:openbsd][:url]
+#
+#    # Boot with a GUI so you can see the screen. (Default is headless)
+#    # openbsd.vm.boot_mode = :gui
+#
+#    openbsd.vm.provision :chef_solo do |chef|
+#      chef.cookbooks_path = COOKBOOKS_PATH
+#      chef.roles_path = ROLES_PATH
+#      chef.data_bags_path = DATABAGS_PATH
+#      chef.add_recipe "enviro"
+#    end
+#  end
+
+#  config.vm.define :archlinux do |archlinux|
+#    # BOX settings
+#    archlinux.vm.box     = BOXES[:archlinux][:name]
+#    archlinux.vm.box_url = BOXES[:archlinux][:url]
+#
+#    # Boot with a GUI so you can see the screen. (Default is headless)
+#    # archlinux.vm.boot_mode = :gui
+#
+#    archlinux.vm.provision :chef_solo do |chef|
+#      chef.cookbooks_path = COOKBOOKS_PATH
+#      chef.roles_path = ROLES_PATH
+#      chef.data_bags_path = DATABAGS_PATH
+#      chef.add_recipe "enviro"
+#    end
+#  end
 
 end
