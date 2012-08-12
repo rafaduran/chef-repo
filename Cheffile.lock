@@ -18,7 +18,7 @@ GIT
 GIT
   remote: https://github.com/rafaduran/chef-mongodb
   ref: issues/18
-  sha: e28e56ec5baf066c1c884b8e0b81cac8c9be5d34
+  sha: 1fce2732a19016992eaaac59fea94014f9fd8fee
   specs:
     mongodb (0.12.0)
       apt (>= 0.0.0)
