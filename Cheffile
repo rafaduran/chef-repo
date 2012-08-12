@@ -16,4 +16,4 @@ cookbook 'chef-client'
 
 cookbook 'mongodb',
   :git => 'https://github.com/rafaduran/chef-mongodb',
-  :ref => 'master'
+  :ref => 'issues/18'
