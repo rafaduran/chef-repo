@@ -64,8 +64,6 @@ Vagrant::Config.run do |config|
 
     # Networking settings
     debian_mongodb.vm.network :hostonly, "192.168.33.11"
-    # Forwrdring MongoDB port
-    debian_mongodb.vm.forward_port 27017, 17027
 
     debian_mongodb.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = COOKBOOKS_PATH
@@ -73,6 +71,7 @@ Vagrant::Config.run do |config|
       chef.data_bags_path = DATABAGS_PATH
       chef.add_recipe "minitest-handler"
       chef.add_role "mongodb"
+      chef.json = { :mongodb => { :bind_ip => '127.0.0.1' }}
     end
   end
 
