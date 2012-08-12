@@ -7,4 +7,4 @@ gem "chef"
 gem "knife-ec2"
 gem "librarian"
 # This needs to be installed from source
-gem "cucumber-chef", "~> 2.0.1.pre"
+# gem "cucumber-chef", "~> 2.0.1.pre"
