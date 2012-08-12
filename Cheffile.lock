@@ -3,11 +3,14 @@ SITE
   specs:
     apt (1.4.4)
     chef-client (1.1.4)
+    chef_handler (1.0.6)
+    minitest-handler (0.1.0)
+      chef_handler (>= 0.0.0)
 
 GIT
   remote: https://github.com/rafaduran/chef-enviro.git
   ref: master
-  sha: 04c53114dc6d4ce357de5e22edda5a6ff5096389
+  sha: 0cc02cbaa0eac4efe5ea7ac3543f586b204d241e
   specs:
     enviro (0.0.1)
       apt (>= 0.0.0)
@@ -23,5 +26,6 @@ GIT
 DEPENDENCIES
   chef-client (>= 0)
   enviro (>= 0)
+  minitest-handler (>= 0)
   mongodb (>= 0)
 
