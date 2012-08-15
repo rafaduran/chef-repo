@@ -1,9 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-COOKBOOKS_PATH = ENV['VAGRANT_COOKBOOKS_PATH'] || ['cookbooks', 'site-cookbooks']
-ROLES_PATH     = ENV['VAGRANT_ROLES_PATH'] || 'roles'
-DATABAGS_PATH  = ENV['VAGRANT_DATABAGS_PATH'] || 'data_bags'
+BASEDIR        = '..'
+COOKBOOKS_PATH = ENV['VAGRANT_COOKBOOKS_PATH'] ||
+                 ["#{BASEDIR}/cookbooks", "#{BASEDIR}/site-cookbooks"]
+ROLES_PATH     = ENV['VAGRANT_ROLES_PATH'] || "#{BASEDIR}/roles"
+DATABAGS_PATH  = ENV['VAGRANT_DATABAGS_PATH'] || "#{BASEDIR}/data_bags"
 BOXES = {
   :ubuntu => {
     :name => 'precise64',
