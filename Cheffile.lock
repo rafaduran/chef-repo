@@ -1,7 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apt (1.4.4)
+    apt (1.4.6)
     chef-client (1.1.4)
     chef_handler (1.0.6)
     minitest-handler (0.1.0)
@@ -18,7 +18,7 @@ GIT
 GIT
   remote: https://github.com/rafaduran/chef-mongodb
   ref: issues/18
-  sha: 1fce2732a19016992eaaac59fea94014f9fd8fee
+  sha: 4146d202c057ef8a6b5092b49d2be329be6ddb4c
   specs:
     mongodb (0.12.0)
       apt (>= 0.0.0)
