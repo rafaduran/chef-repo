@@ -47,6 +47,8 @@ Vagrant::Config.run do |config|
     # Forwrdring MongoDB port
     ubuntu_mongodb.vm.forward_port 27017, 27017
 
+    ubuntu_mongodb.vm.provision :shell, :path => "scripts/vagrant.sh"
+
     ubuntu_mongodb.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = COOKBOOKS_PATH
       chef.roles_path = ROLES_PATH
@@ -67,6 +69,8 @@ Vagrant::Config.run do |config|
     # Networking settings
     debian_mongodb.vm.network :hostonly, "192.168.33.11"
 
+    debian_mongodb.vm.provision :shell, :path => "scripts/vagrant.sh"
+
     debian_mongodb.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = COOKBOOKS_PATH
       chef.roles_path = ROLES_PATH
@@ -84,6 +88,8 @@ Vagrant::Config.run do |config|
 
     # Boot with a GUI so you can see the screen. (Default is headless)
     # config.vm.boot_mode = :gui
+
+    centos.vm.provision :shell, :path => "scripts/vagrant.sh"
 
     centos.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = COOKBOOKS_PATH
