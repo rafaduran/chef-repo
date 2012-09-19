@@ -6,6 +6,7 @@ SITE
     chef_handler (1.0.8)
     minitest-handler (0.1.2)
       chef_handler (>= 0.0.0)
+    yum (0.8.2)
 
 GIT
   remote: https://github.com/rafaduran/chef-enviro.git
@@ -17,15 +18,17 @@ GIT
 
 GIT
   remote: https://github.com/rafaduran/chef-mongodb
-  ref: issues/18
-  sha: 4146d202c057ef8a6b5092b49d2be329be6ddb4c
+  ref: development
+  sha: 57ad84dba6bfc186a994fd85db75374817cb5794
   specs:
-    mongodb (0.12.0)
+    mongodb (0.11.0)
       apt (>= 0.0.0)
+      yum (>= 0.0.0)
 
 DEPENDENCIES
   chef-client (>= 0)
   enviro (>= 0)
   minitest-handler (>= 0)
   mongodb (>= 0)
+  yum (>= 0)
 
