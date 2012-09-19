@@ -34,7 +34,7 @@ BOXES = {
 
 Vagrant::Config.run do |config|
 
-  config.vm.define :ubumongo do |ubuntu_mongodb|
+  config.vm.define :ubuntu do |ubuntu_mongodb|
     # BOX settings
     ubuntu_mongodb.vm.box     = BOXES[:ubuntu][:name]
     ubuntu_mongodb.vm.box_url = BOXES[:ubuntu][:url]
@@ -58,7 +58,7 @@ Vagrant::Config.run do |config|
     end
   end
 
-  config.vm.define :debmongo do |debian_mongodb|
+  config.vm.define :debian do |debian_mongodb|
     # BOX settings
     debian_mongodb.vm.box     = BOXES[:debian][:name]
     debian_mongodb.vm.box_url = BOXES[:debian][:url]
@@ -96,7 +96,6 @@ Vagrant::Config.run do |config|
       chef.roles_path = ROLES_PATH
       chef.data_bags_path = DATABAGS_PATH
       chef.add_recipe "minitest-handler"
-      chef.add_recipe "enviro"
     end
   end
 
