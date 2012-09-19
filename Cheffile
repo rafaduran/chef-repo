@@ -16,9 +16,10 @@ cookbook 'chef-client'
 
 cookbook 'mongodb',
   :git => 'https://github.com/rafaduran/chef-mongodb',
-  :ref => 'issues/18'
+  :ref => 'development'
 
 cookbook 'enviro',
   :git => 'https://github.com/rafaduran/chef-enviro.git'
 
 cookbook 'minitest-handler'
+cookbook 'yum'

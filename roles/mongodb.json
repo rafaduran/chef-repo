@@ -11,6 +11,7 @@
   },
   "chef_type": "role",
   "run_list": [
+    "mongodb::10gen_repo",
     "enviro",
     "mongodb"
   ],

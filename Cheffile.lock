@@ -6,6 +6,7 @@ SITE
     chef_handler (1.0.8)
     minitest-handler (0.1.2)
       chef_handler (>= 0.0.0)
+    yum (0.8.2)
 
 GIT
   remote: https://github.com/rafaduran/chef-enviro.git
@@ -28,4 +29,5 @@ DEPENDENCIES
   enviro (>= 0)
   minitest-handler (>= 0)
   mongodb (>= 0)
+  yum (>= 0)
 
