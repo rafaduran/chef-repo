@@ -22,4 +22,5 @@ cookbook 'enviro',
   :git => 'https://github.com/rafaduran/chef-enviro.git'
 
 cookbook 'minitest-handler'
+cookbook 'redisio'
 cookbook 'yum'
