@@ -102,6 +102,31 @@ Vagrant::Config.run do |config|
     end
   end
 
+  config.vm.define :uslanger do |ubuntu_slanger|
+    # BOX settings
+    ubuntu_slanger.vm.box     = BOXES[:ubuntu][:name]
+    ubuntu_slanger.vm.box_url = BOXES[:ubuntu][:url]
+
+    # Boot with a GUI so you can see the screen. (Default is headless)
+    # config.vm.boot_mode = :gui
+
+    # Networking settings
+    # DHCP ensures 08:00:27:8a:54:74 => 192.168.1.50
+    ubuntu_slanger.vm.network :bridged, :bridge => 'wlan1'
+    # Forwrdring slanger push port
+    ubuntu_slanger.vm.forward_port 4567, 4567
+
+    ubuntu_slanger.vm.provision :shell, :path => 'scripts/vagrant.sh'
+
+    ubuntu_slanger.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = COOKBOOKS_PATH
+      chef.roles_path = ROLES_PATH
+      chef.data_bags_path = DATABAGS_PATH
+      chef.add_recipe 'minitest-handler'
+      chef.add_role 'slanger'
+    end
+  end
+
 # Commented out boxes doesn't work as expected
 #  config.vm.define :openbsd do |openbsd|
 #    # BOX settings

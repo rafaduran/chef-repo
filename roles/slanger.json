@@ -1,0 +1,17 @@
+{
+  "name": "slanger",
+  "description": "Slanger push server.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "enviro",
+    "redisio::install",
+    "redisio::enable"
+  ],
+  "env_run_lists": {
+  }
+}
