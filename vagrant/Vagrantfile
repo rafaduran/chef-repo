@@ -34,7 +34,7 @@ BOXES = {
 
 Vagrant::Config.run do |config|
 
-  config.vm.define :ubuntu do |ubuntu_mongodb|
+  config.vm.define :umongodb do |ubuntu_mongodb|
     # BOX settings
     ubuntu_mongodb.vm.box     = BOXES[:ubuntu][:name]
     ubuntu_mongodb.vm.box_url = BOXES[:ubuntu][:url]
@@ -58,7 +58,7 @@ Vagrant::Config.run do |config|
     end
   end
 
-  config.vm.define :debian do |debian_mongodb|
+  config.vm.define :dmongodb do |debian_mongodb|
     # BOX settings
     debian_mongodb.vm.box     = BOXES[:debian][:name]
     debian_mongodb.vm.box_url = BOXES[:debian][:url]
@@ -81,7 +81,10 @@ Vagrant::Config.run do |config|
     end
   end
 
-  config.vm.define :centos do |centos|
+  config.vm.define :cmongodb do |centos|
+    # It suppose to be a MongoDB VM, but MongoDB cookbook doesn't work properly
+    # yet on CentOS.
+
     # BOX settings
     centos.vm.box     = BOXES[:centos][:name]
     centos.vm.box_url = BOXES[:centos][:url]
