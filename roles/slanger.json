@@ -10,7 +10,8 @@
   "run_list": [
     "enviro",
     "redisio::install",
-    "redisio::enable"
+    "redisio::enable",
+    "slanger"
   ],
   "env_run_lists": {
   }
