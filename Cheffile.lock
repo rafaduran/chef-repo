@@ -17,6 +17,14 @@ GIT
     rvm (0.9.0)
 
 GIT
+  remote: git://github.com/rafaduran/chef-slanger.git
+  ref: master
+  sha: 131776e86c98ef226d4378363359677ce91ca5cc
+  specs:
+    slanger (0.0.1)
+      rvm (>= 0.0.0)
+
+GIT
   remote: https://github.com/rafaduran/chef-enviro.git
   ref: master
   sha: 0cc02cbaa0eac4efe5ea7ac3543f586b204d241e
@@ -40,5 +48,6 @@ DEPENDENCIES
   mongodb (>= 0)
   redisio (>= 0)
   rvm (>= 0)
+  slanger (>= 0)
   yum (>= 0)
 

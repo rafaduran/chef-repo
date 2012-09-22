@@ -21,3 +21,6 @@ cookbook 'yum'
 cookbook 'rvm',
   :git => 'git://github.com/fnichol/chef-rvm.git',
   :ref => 'v0.9.0'
+
+cookbook 'slanger',
+  :git => 'git://github.com/rafaduran/chef-slanger.git',
