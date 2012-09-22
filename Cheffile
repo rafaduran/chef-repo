@@ -5,12 +5,6 @@ site 'http://community.opscode.com/api/v1'
 
 cookbook 'chef-client'
 
-# cookbook 'apache2', '>= 1.0.0'
-
-# cookbook 'postgresql',
-#   :git => 'https://github.com/findsyou/cookbooks',
-#   :ref => 'postgresql-improvements'
-
 cookbook 'mongodb',
   :git => 'https://github.com/rafaduran/chef-mongodb',
   :ref => 'development'
@@ -19,8 +13,11 @@ cookbook 'enviro',
   :git => 'https://github.com/rafaduran/chef-enviro.git'
 
 cookbook 'minitest-handler'
+
 cookbook 'redisio'
+
 cookbook 'yum'
+
 cookbook 'rvm',
   :git => 'git://github.com/fnichol/chef-rvm.git',
   :ref => 'v0.9.0'
