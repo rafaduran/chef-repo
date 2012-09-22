@@ -7,9 +7,6 @@ cookbook 'chef-client'
 
 # cookbook 'apache2', '>= 1.0.0'
 
-# cookbook 'rvm',
-#   :git => 'https://github.com/fnichol/chef-rvm'
-
 # cookbook 'postgresql',
 #   :git => 'https://github.com/findsyou/cookbooks',
 #   :ref => 'postgresql-improvements'
@@ -24,3 +21,6 @@ cookbook 'enviro',
 cookbook 'minitest-handler'
 cookbook 'redisio'
 cookbook 'yum'
+cookbook 'rvm',
+  :git => 'git://github.com/fnichol/chef-rvm.git',
+  :ref => 'v0.9.0'
