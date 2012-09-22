@@ -112,7 +112,8 @@ Vagrant::Config.run do |config|
 
     # Networking settings
     # DHCP ensures 08:00:27:8a:54:74 => 192.168.1.50
-    ubuntu_slanger.vm.network :bridged, :bridge => 'wlan1'
+    ubuntu_slanger.vm.network :bridged, :bridge => 'wlan1',
+                              :mac => '0800278a5474'
     # Forwrdring slanger push port
     ubuntu_slanger.vm.forward_port 4567, 4567
 
